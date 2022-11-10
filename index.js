@@ -6,10 +6,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  // checks if user typed a valid value
-  if (!choices.includes(playerSelection.toLowerCase()))
-    return "Type a valie choice...";
-
   // checks if it's a tie
   if (playerSelection.toLowerCase() === computerSelection) {
     return `Tie! Both chose ${computerSelection}.`;
@@ -31,16 +27,15 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// starts a new round until user presses ESC
-while (play) {
-  playerSelection = prompt(
-    "What's your choice? (rock, paper or scissors) [press ESC to exit]"
-  );
-  alert(playRound(playerSelection, getComputerChoice()));
-}
-
-document.onkeyup(() => {
-  if (e.key === "Escape") {
-    play = false;
-  }
+document.querySelectorAll(".choice").forEach((choice) => {
+  choice.addEventListener("click", () => {
+    const result = playRound(choice.dataset.value, getComputerChoice());
+    const resultDisplay = document.querySelector("h2");
+    if (result.includes("Tie")) {
+      resultDisplay.style.color = "#181818";
+    } else {
+      resultDisplay.style.color = result.includes("won") ? "green" : "red";
+    }
+    document.querySelector("h2").textContent = result;
+  });
 });
