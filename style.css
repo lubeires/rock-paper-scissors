@@ -16,14 +16,44 @@ body {
   align-items: center;
 }
 
-h1 {
+button {
+  background: #181818;
+  color: #ededed;
+
+  border-radius: 1rem;
+}
+
+button:hover {
+  opacity: 90%;
+  cursor: pointer;
+}
+
+#score {
+  text-align: center;
   font-size: 3rem;
-  font-style: italic;
   margin-bottom: 3rem;
 }
 
+#score p {
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+#round-result {
+  color: #ededed;
+  font-size: 1.5rem;
+}
+
+.play {
+  text-align: center;
+}
 .container {
-  padding: 4rem;
+  padding: 2rem;
 
   display: flex;
   flex-wrap: wrap;
@@ -31,12 +61,7 @@ h1 {
 }
 
 .choice {
-  background: #181818;
-  color: #ededed;
-
   padding: 4rem;
-
-  border-radius: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -44,12 +69,17 @@ h1 {
   align-items: center;
 }
 
-.choice:hover {
-  opacity: 90%;
-  cursor: pointer;
+.choice:disabled {
+  opacity: 80%;
 }
 
-h2 {
-  color: #ededed;
-  font-size: 2rem;
+.end {
+  display: none;
+  text-align: center;
+}
+
+.end button {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  margin: 2rem;
 }

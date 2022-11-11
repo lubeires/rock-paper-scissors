@@ -12,30 +12,65 @@ function playRound(playerSelection, computerSelection) {
     // checks who won if user chose rock
   } else if (playerSelection.toLowerCase() === "rock") {
     return computerSelection === "scissors"
-      ? "You won! Rock beats scissors."
-      : "You lose! Paper beats rock.";
+      ? "You won this round! Rock beats scissors."
+      : "You lose this round! Paper beats rock.";
     // checks who won if user chose paper
   } else if (playerSelection.toLowerCase() === "paper") {
     return computerSelection === "rock"
-      ? "You won! Paper beats rock."
-      : "You lose! Scissors beats paper.";
+      ? "You won this round! Paper beats rock."
+      : "You lose this round! Scissors beats paper.";
     // checks who won if user chose scissors
   } else if (playerSelection.toLowerCase() === "scissors") {
     return computerSelection === "paper"
-      ? "You won! Scissors beats paper."
-      : "You lose! Rock beats scissors.";
+      ? "You won this round! Scissors beats paper."
+      : "You lose this round! Rock beats scissors.";
   }
 }
 
 document.querySelectorAll(".choice").forEach((choice) => {
   choice.addEventListener("click", () => {
     const result = playRound(choice.dataset.value, getComputerChoice());
-    const resultDisplay = document.querySelector("h2");
+    const roundResult = document.querySelector("#round-result");
+    const playerPoints = document.querySelector("#player");
+    const computerPoints = document.querySelector("#computer");
+
     if (result.includes("Tie")) {
-      resultDisplay.style.color = "#181818";
+      roundResult.style.color = "#181818";
     } else {
-      resultDisplay.style.color = result.includes("won") ? "green" : "red";
+      if (result.includes("won")) {
+        roundResult.style.color = "green";
+        playerPoints.textContent = Number(playerPoints.textContent) + 1;
+      } else {
+        roundResult.style.color = "red";
+        computerPoints.textContent = Number(computerPoints.textContent) + 1;
+      }
     }
-    document.querySelector("h2").textContent = result;
+    roundResult.textContent = result;
+    if (
+      computerPoints.textContent === "5" ||
+      playerPoints.textContent === "5"
+    ) {
+      document.querySelector(".play").style.display = "none";
+      const end = document.querySelector(".end");
+      const finalResult = document.createElement("h2");
+
+      finalResult.style.fontSize = "2rem";
+
+      if (playerPoints.textContent === "5") {
+        finalResult.textContent = "End of game... You won!";
+        finalResult.style.color = "green";
+      } else {
+        finalResult.textContent = "End of game... You lose!";
+        finalResult.style.color = "red";
+      }
+
+      end.insertBefore(finalResult, document.querySelector("#play-again"));
+
+      end.style.display = "block";
+    }
   });
 });
+
+document
+  .querySelector("#play-again")
+  .addEventListener("click", () => location.reload());

@@ -14,18 +14,27 @@
 </head>
 
 <body>
+    <div id="score">
+        <p>score</p>
+        <span id="player">0</span> x <span id="computer">0</span>
+    </div>
     <h1>rock paper scissors</h1>
-    <h2>result</h2>
-    <div class="container">
-        <div class="choice" data-value="rock">
-            <i class="fa-regular fa-hand-back-fist fa-4x"></i>
+    <div class="play">
+        <h3 id="round-result">round result</h3>
+        <div class="container">
+            <button class="choice" data-value="rock">
+                <i class="fa-regular fa-hand-back-fist fa-4x"></i>
+            </button>
+            <button class="choice" data-value="paper">
+                <i class="fa-regular fa-hand fa-4x"></i>
+            </button>
+            <button class="choice" data-value="scissors">
+                <i class="fa-regular fa-hand-scissors fa-4x"></i>
+            </button>
         </div>
-        <div class="choice" data-value="paper">
-            <i class="fa-regular fa-hand fa-4x"></i>
-        </div>
-        <div class="choice" data-value="scissors">
-            <i class="fa-regular fa-hand-scissors fa-4x"></i>
-        </div>
+    </div>
+    <div class="end">
+        <button id="play-again">play again</button>
     </div>
 
     <script src="./index.js"></script>
